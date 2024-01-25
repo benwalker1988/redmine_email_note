@@ -1,4 +1,4 @@
-class CreateCustomOwnerEmailField < ActiveRecord::Migration[5.2]
+class AddSendColumnAndEmailCustomFields < ActiveRecord::Migration[5.2]
   def self.up
     unless column_exists? :journals, :send_to_client
       add_column :journals, :send_to_client, :boolean, :default => false
