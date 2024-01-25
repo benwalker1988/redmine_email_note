@@ -1,0 +1,35 @@
+<%= check_box_tag('send_to_client', "true", false, onclick: 'validateCheckbox()') %> <%= label_tag('send_to_client', 'Send update to client') %>
+
+<script>
+  function validateCheckbox() {
+    var checkbox = document.getElementById("send_to_client");
+    var email_field = document.getElementById("issue_custom_field_values_43");
+    var subject_field = document.getElementById("issue_custom_field_values_45");
+
+    if (!email_field) {
+      alert("To Email text field not present. Cannot email");
+      checkbox.checked = false;
+      return;
+    }
+
+    if (!subject_field) {
+      alert("Email Subject text field not present. Cannot email");
+      checkbox.checked = false;
+      return;
+    }
+
+    if (checkbox.checked) {
+      if (email_field.value.trim() === "") {
+        alert("Please ensure 'To Email' has been completed");
+        checkbox.checked = false;
+      }
+    }
+
+    if (checkbox.checked) {
+      if (subject_field.value.trim() === "") {
+        alert("Please ensure 'Email Subject' has been completed");
+        checkbox.checked = false;
+      }
+    }
+  }
+</script>
