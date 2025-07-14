@@ -19,16 +19,26 @@
     }
 
     if (checkbox.checked) {
+      var missing = [];
       if (email_field.value.trim() === "") {
-        alert("Please ensure 'To Email' has been completed");
-        checkbox.checked = false;
+        missing.push("To Email");
       }
-    }
-
-    if (checkbox.checked) {
       if (subject_field.value.trim() === "") {
-        alert("Please ensure 'Email Subject' has been completed");
-        checkbox.checked = false;
+        missing.push("Email Subject");
+      }
+
+      if (missing.length > 0) {
+        var message = "The following required fields are missing:\n\n" +
+                      missing.join("\n") +
+                      "\n\nAre you sure you want to send anyway?\n\n" +
+                      "Press OK if you're using Slack instead.\n" +
+                      "Press Cancel if you forgot to fill in the fields.";
+
+        var userChoice = confirm(message);
+
+        if (!userChoice) {
+          checkbox.checked = false;
+        }
       }
     }
   }
